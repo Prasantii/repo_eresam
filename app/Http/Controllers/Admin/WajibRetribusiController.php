@@ -38,7 +38,7 @@ use App\Http\Models\DetailImage;
 use App\Http\Models\Tagihan;
 use App\Http\Models\UploadBukti;
 
-use App\Imports\wrGampongimport;
+use App\Imports\wrGampong_import;
 
 use QrCode;
 use Storage;
@@ -1376,12 +1376,16 @@ class WajibRetribusiController extends Controller
     
     public function importGampong(Request $request)
     {
-        
+        // Excel::import(new wrGampong_import, request()->file('file'));
+        // return back();
+
         try {
          
-       dd($request->all());
-       // $file = $request->file('file');
-        Excel::import(new wrGampongimport,$file);
+       //dd($request->all());
+      //  $file = $request->file('file');
+        //Excel::import(new wrGampongimport,$file);
+        Excel::import(new wrGampongimport, request()->file('file'));
+
         dd("DONE");
         
         } catch (NoTypeDetectedException $e) {

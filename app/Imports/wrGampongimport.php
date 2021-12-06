@@ -17,13 +17,13 @@ class wrGampongimport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         return new wrGampong([
-            'code' =>$row['code'],
-            'nik'  =>$row['nik'],
-            'nama' =>$row['nama'],
-            'alamat' =>$row['alamat'],
-            'jenis_retribusi' =>$row['jenis_id'],
-            'tarif_gampong' =>$row['tarif_gampong'],
-            'is_active' =>$row['is_active']
+            'code' =>$row["code"],
+            'nik'  =>$row["nik"],
+            'nama' =>$row["nama"],
+            'alamat' =>$row["alamat"],
+            'jenis_retribusi' =>$row["jenis_id"],
+            'tarif_gampong' =>$row["tarif_gampong"],
+            'is_active' =>$row["is_active"]
         ]);
     }
 }
