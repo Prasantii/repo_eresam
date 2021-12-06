@@ -236,7 +236,7 @@ Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
     Route::get('/devadmin/wajib_retribusi/cetakWr3', 'Admin\WajibRetribusiController@cetak_3');
 
     //===========================================import======================================
-    Route::PUT('/devadmin/wajib_retribusi/importGampong','Admin\WajibRetribusiController@importGampong')->name('import.gampong');
+    Route::post('/devadmin/wajib_retribusi/importGampong','Admin\WajibRetribusiController@importGampong')->name('import.gampong');
 
 
 

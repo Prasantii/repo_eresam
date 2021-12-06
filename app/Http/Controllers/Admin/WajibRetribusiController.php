@@ -38,7 +38,7 @@ use App\Http\Models\DetailImage;
 use App\Http\Models\Tagihan;
 use App\Http\Models\UploadBukti;
 
-use App\Imports\wrGampong_import;
+use App\Imports\wrGampongimport;
 
 use QrCode;
 use Storage;
@@ -1361,7 +1361,7 @@ class WajibRetribusiController extends Controller
         
     }
 
-    public function importGampong(Request $request)
+    public function importGampong2(Request $request)
     {
         // set waktu agar tidak dibatasi oleh laravel
         set_time_limit(0);
@@ -1389,26 +1389,28 @@ class WajibRetribusiController extends Controller
         return redirect('devadmin/wajib_retribusi');
     }
     
-    public function importGampong2(Request $request)
+    public function importGampong(Request $request)
     {
-        // Excel::import(new wrGampong_import, request()->file('file'));
-        // return back();
-
-        try {
-         
-       //dd($request->all());
-      //  $file = $request->file('file');
-        //Excel::import(new wrGampongimport,$file);
-        Excel::import(new wrGampongimport, request()->file('file'));
-
-        dd("DONE");
+        //  Excel::import(new wrGampongimport, $request->file('file'));
+        //  return redirect()->back();
+        $path1 = $request->file('file')->store(); 
+$path=storage_path('app').'/'.$path1;  
+$data = \Excel::import(new wrGampongimport,$path);
+    //     try {         
+    //    //dd($request->all());
+    //   //  $file = $request->file('file');
+    //     //Excel::import(new wrGampongimport,$file);
+    //     Excel::import(new wrGampongimport, $request->file('file'));
         
-        } catch (NoTypeDetectedException $e) {
+
+    //     //dd("DONE");
+        
+    //     } catch (NoTypeDetectedException $e) {
             
-                // flash("Sorry you are using a wrong format to upload files.")->error();
-                // return Redirect::back();
-                return abort(500);
-        }
+    //             // flash("Sorry you are using a wrong format to upload files.")->error();
+    //             // return Redirect::back();
+    //             //return abort(500);
+    //     }
         
     }
 }

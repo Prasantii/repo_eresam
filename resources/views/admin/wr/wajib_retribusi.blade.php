@@ -197,8 +197,8 @@
           
       <div class="card card-primary">
       
-      <form method="POST" enctype="multipart/form-data" action="/devadmin/wajib_retribusi/importGampong">
-      {{method_field('PUT')}}
+      <form method="POST"  action="/devadmin/wajib_retribusi/importGampong" enctype="multipart/form-data">
+      
       {{csrf_field()}}
       
                 <div class="card-body">

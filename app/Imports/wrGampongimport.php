@@ -5,11 +5,11 @@ namespace App\Imports;
 use App\wrGampong;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use maatwebsite\Excel\Concerns\WithChunkReading;
+//use maatwebsite\Excel\Concerns\WithChunkReading;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 
-class wrGampongimport implements ToModel, WithChunkReading,ShouldQueue ,WithHeadingRow
+class wrGampongimport implements ToModel,ShouldQueue ,WithHeadingRow    
 {
     /**
     * @param array $row
@@ -18,22 +18,16 @@ class wrGampongimport implements ToModel, WithChunkReading,ShouldQueue ,WithHead
     */
     public function model(array $row)
     {
+        dd($row);
         return new wrGampong([
-
-            'code' => $row[1],
-            'nik'   => $row[2],
-            'nama'   => $row[3],
-            'alamat'    => $row[4],
-            'jenis_id' =>$row[5],
-            'is_active' => $row[6]
-
-            // 'code' =>$row["code"],
-            // 'nik'  =>$row["nik"],
-            // 'nama' =>$row["nama"],
-            // 'alamat' =>$row["alamat"],
-            // 'jenis_retribusi' =>$row["jenis_id"],
-            // 'tarif_gampong' =>$row["tarif_gampong"],
-            // 'is_active' =>$row["is_active"]
+            //             $row[1],
+            // 'code' => $row[2],
+            // 'nik'   => $row[3],
+            // 'nama'   => $row[4],
+            // 'alamat'    => $row[5],
+            // 'jenis_id' =>$row[6],
+            // 'is_active' => $row[7]
+          
         ]);
     }
 
