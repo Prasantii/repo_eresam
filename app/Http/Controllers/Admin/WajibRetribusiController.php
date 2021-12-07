@@ -39,6 +39,11 @@ use App\Http\Models\Tagihan;
 use App\Http\Models\UploadBukti;
 
 use App\Imports\wrGampongimport;
+use App\Imports\wrGampong_import;
+use App\Imports\wrKomersil_import;
+use App\Imports\wrKomersil;
+
+
 
 use QrCode;
 use Storage;
@@ -1326,37 +1331,16 @@ class WajibRetribusiController extends Controller
         return view('admin.wr.cetakWr3', compact('wr_belumVerif'));
     }
 
-    public function importGampong1(Request $request)
+    public function importGampong(Request $request)
     {
         $this->validate($request, [
             'select_file' => 'required|mimes:xls,xlsx'
         ]);
 
         $path = $request->file('select_file')->getRealPath();
-        $data = Excel::load($path)->get();
+        $rows = Excel::import(new wrKomersil_import,$path);
 
-        if($data->count() > 0)
-        {
-            foreach($data->toArray() as $key => $value) 
-            {
-                foreach($value as $row) 
-                {
-                    $insert_data[] = array(
-                        'KODE'              =>$row['code'],
-                        'NIK'               =>$row['nik'],
-                        'NAMA'              =>$row['nama'],
-                        'ALAMAT'            =>$row['alamat'],
-                        'JENIS RETRIBUSI'   =>$row[jenis_retribusi],
-                        'TARIF'             =>$row['tarif_gampong'],
-                        'VERIFIKASI'        =>$row['is_active']
-                    );
-                }
-            }
-            if(!empty($insert_data))
-        {
-            DB::table('wajib_retribusi')->insert($insert_data);
-        }
-    }
+   
         return back()->with('success', 'Data Berhasil di Import!');
         
     }
@@ -1389,28 +1373,24 @@ class WajibRetribusiController extends Controller
         return redirect('devadmin/wajib_retribusi');
     }
     
-    public function importGampong(Request $request)
+    public function importGampong1(Request $request)
     {
         //  Excel::import(new wrGampongimport, $request->file('file'));
         //  return redirect()->back();
-        $path1 = $request->file('file')->store(); 
-$path=storage_path('app').'/'.$path1;  
-$data = \Excel::import(new wrGampongimport,$path);
-    //     try {         
-    //    //dd($request->all());
-    //   //  $file = $request->file('file');
-    //     //Excel::import(new wrGampongimport,$file);
-    //     Excel::import(new wrGampongimport, $request->file('file'));
         
-
-    //     //dd("DONE");
+        try {         
+       //dd($request->all());
+      //  $file = $request->file('file');
+        //Excel::import(new wrGampongimport,$file);
+        Excel::import(new wrGampongimport, $request->file('file'));
         
-    //     } catch (NoTypeDetectedException $e) {
             
-    //             // flash("Sorry you are using a wrong format to upload files.")->error();
-    //             // return Redirect::back();
-    //             //return abort(500);
-    //     }
+        dd("DONE");
+        
+        } catch (NoTypeDetectedException $e) {
+            
+                return abort(500);
+        }
         
     }
 }
