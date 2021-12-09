@@ -11,6 +11,46 @@
         <li><a href="#">Aplikasi</a></li>
         <li class="active">Data Wajib Retribusi</li>
     </ul>
+    @if(count($errors) > 0)
+    <div class="alert alert-danger">
+     Upload Validation Error<br><br>
+     <ul>
+      @foreach($errors->all() as $error)
+      <li>{{ $error }}</li>
+      @endforeach
+     </ul>
+    </div>
+   @endif
+
+   @if($message = Session::get('success'))
+   <div class="alert alert-success alert-block">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+           <strong>{{ $message }}</strong>
+   </div>
+   @endif
+
+   <form method="post" enctype="multipart/form-data" action="/devadmin/wajib_retribusi/importGampong">
+    {{ csrf_field() }}
+    <div class="form-group">
+     <table class="table">
+      <tr>
+       <td width="40%" align="right"><label>Select File for Upload '.xlsx or '.xls'</label></td>
+       <td width="30">
+        <input type="file" name="select_file" />
+       </td>
+       <td width="30%" align="left">
+        <input type="submit" name="upload" class="btn btn-info" value="Import">
+       </td>
+      </tr>
+      <tr>
+       <td width="40%" align="right"></td>
+       
+       <td width="30%" align="left"></td>
+      </tr>
+     </table>
+    </div>
+   </form>
+   
 </div>
 
 <!-- END PAGE HEADING -->
@@ -45,16 +85,13 @@
                                 <br>
                                 <div class="panel-elements pull-right">
                                 <a href="{{url('/devadmin/wajib_retribusi/cetakWr')}}" target="_blank"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Export</button></a>
- 
-                                <button type="button" class="btn btn-info btn-shadowed" data-toggle="modal" data-target="#myModal1">Import
-                                </button>
                             </div>
 
                                 <div>
                                 <a href="{{url('/devadmin/tambahwajib_retribusi')}}"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Tambah</button></a>    
                                 </div>
                             </div>
-
+        
                               
                             <div class="panel-body">      
                                 <div class="block-content  ">
@@ -93,9 +130,6 @@
 
                                 <div class="panel-elements pull-right">
                                 <a href="{{url('/devadmin/wajib_retribusi/cetakWr2')}}" target="_blank"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Export</button></a>
-
-                                <button type="button" class="btn btn-info btn-shadowed" data-toggle="modal" data-target="#myModal2">Import
-                                </button>
                                 </div>
 
                                 <div>
@@ -138,9 +172,6 @@
                                 <br>
                                 <div class="panel-elements pull-right">
                                 <a href="{{url('/devadmin/wajib_retribusi/cetakWr3')}}" target="_blank"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Export</button></a>
-
-                                <button type="button" class="btn btn-info btn-shadowed" data-toggle="modal" data-target="#myModal3">Import
-                                </button>
                                 </div>
 
                                 <div>
@@ -197,8 +228,7 @@
           
       <div class="card card-primary">
       
-      <form method="POST"  action="/devadmin/wajib_retribusi/importGampong" enctype="multipart/form-data">
-      
+      <form method="POST"  action="/devadmin/wajib_retribusi/importGampong" enctype="multipart/form-data">      
       {{csrf_field()}}
       
                 <div class="card-body">

@@ -40,7 +40,7 @@ use App\Http\Models\UploadBukti;
 
 use App\Imports\wrGampongimport;
 use App\Imports\wrGampong_import;
-use App\Imports\wrKomersil_import;
+use App\Imports\wrKomersil_import; //datanya masuk
 use App\Imports\wrKomersil;
 
 
@@ -1333,66 +1333,72 @@ class WajibRetribusiController extends Controller
 
     public function importGampong(Request $request)
     {
-        $this->validate($request, [
-            'select_file' => 'required|mimes:xls,xlsx'
-        ]);
+         $this->validate($request, [
+             'select_file' => 'required|mimes:xls,xlsx'
+         ]);
 
         $path = $request->file('select_file')->getRealPath();
-        $rows = Excel::import(new wrKomersil_import,$path);
-
+     //$rows = Excel::import(new wrKomersil_import,$path);
+     
+        //$collection = (new wrKomersil_import)->toCollection('tes.xlsx');
    
-        return back()->with('success', 'Data Berhasil di Import!');
+       
+
+        //===========berhasil import====================
+         $row = Excel::import(new wrGampong_import,$path);         
+         return back()->with('success', 'Data Berhasil di Import!');
         
     }
 
-    public function importGampong2(Request $request)
-    {
-        // set waktu agar tidak dibatasi oleh laravel
-        set_time_limit(0);
-        // validasi
-        $this->validate($request, [
-            'file' => 'required|mimes:csv,xls,xlsx'
-        ]);
+    //========================= TEST DULU ============================
+    // public function importGampong2(Request $request)
+    // {
+    //     // set waktu agar tidak dibatasi oleh laravel
+    //     set_time_limit(0);
+    //     // validasi
+    //     $this->validate($request, [
+    //         'file' => 'required|mimes:csv,xls,xlsx'
+    //     ]);
  
-        // menangkap file excel
-        $file = $request->file('file');
+    //     // menangkap file excel
+    //     $file = $request->file('file');
  
-        // membuat nama file unik
-        $nama_file = rand().$file->getClientOriginalName();
+    //     // membuat nama file unik
+    //     $nama_file = rand().$file->getClientOriginalName();
  
-        // upload ke folder file_siswa di dalam folder public
-        $file->move('import',$nama_file);
+    //     // upload ke folder file_siswa di dalam folder public
+    //     $file->move('import',$nama_file);
  
-        // import data
-        Excel::import(new wrGampongimport, public_path('/uploads/import/'.$nama_file));
+    //     // import data
+    //     Excel::import(new wrGampongimport, public_path('/uploads/import/'.$nama_file));
 
-        // notifikasi dengan session
-        Session::flash('sukses','Data Berhasil Diimport!');
+    //     // notifikasi dengan session
+    //     Session::flash('sukses','Data Berhasil Diimport!');
  
-        // alihkan halaman kembali
-        return redirect('devadmin/wajib_retribusi');
-    }
+    //     // alihkan halaman kembali
+    //     return redirect('devadmin/wajib_retribusi');
+    // }
     
-    public function importGampong1(Request $request)
-    {
-        //  Excel::import(new wrGampongimport, $request->file('file'));
-        //  return redirect()->back();
+    // public function importGampong1(Request $request)
+    // {
+    //     //  Excel::import(new wrGampongimport, $request->file('file'));
+    //     //  return redirect()->back();
         
-        try {         
-       //dd($request->all());
-      //  $file = $request->file('file');
-        //Excel::import(new wrGampongimport,$file);
-        Excel::import(new wrGampongimport, $request->file('file'));
+    //     try {         
+    //    //dd($request->all());
+    //   //  $file = $request->file('file');
+    //     //Excel::import(new wrGampongimport,$file);
+    //     Excel::import(new wrGampongimport, $request->file('file'));
         
             
-        dd("DONE");
+    //     dd("DONE");
         
-        } catch (NoTypeDetectedException $e) {
+    //     } catch (NoTypeDetectedException $e) {
             
-                return abort(500);
-        }
+    //             return abort(500);
+    //     }
         
-    }
+    // }
 }
 
  

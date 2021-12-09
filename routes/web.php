@@ -237,6 +237,8 @@ Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
 
     //===========================================import======================================
     Route::post('/devadmin/wajib_retribusi/importGampong','Admin\WajibRetribusiController@importGampong')->name('import.gampong');
+    Route::post('/devadmin/wajib_retribusi/import','importController@import')->name('import');
+
 
 
 
