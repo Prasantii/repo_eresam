@@ -1338,18 +1338,36 @@ class WajibRetribusiController extends Controller
          ]);
 
         $path = $request->file('select_file')->getRealPath();
+<<<<<<< HEAD
      //$rows = Excel::import(new wrKomersil_import,$path);
+=======
+    $rows = Excel::import(new wrKomersil_import,$path);
+>>>>>>> 229ad1e7c3251ba3e455e2bb320c0017bcf7c199
      
         //$collection = (new wrKomersil_import)->toCollection('tes.xlsx');
    
        
 
         //===========berhasil import====================
+<<<<<<< HEAD
          $row = Excel::import(new wrGampong_import,$path);         
+=======
+       // $row = Excel::import(new wrGampong_import,$path);         
+>>>>>>> 229ad1e7c3251ba3e455e2bb320c0017bcf7c199
          return back()->with('success', 'Data Berhasil di Import!');
         
     }
 
+<<<<<<< HEAD
+=======
+    public function downloadFile(Request $request){
+        $file = Storage::disk('public/uploads/import')->get($request);
+  
+        return (new Response($file, 200))
+              ->header('Content-Type', 'application/xlsx');
+    }
+
+>>>>>>> 229ad1e7c3251ba3e455e2bb320c0017bcf7c199
     //========================= TEST DULU ============================
     // public function importGampong2(Request $request)
     // {

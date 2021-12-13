@@ -1,9 +1,5 @@
-<!-- <meta name="csrf-token" content="{{ csrf_token() }}"> -->
-
 @extends('admin.home')
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 @section('content')
 
 <!-- START PAGE HEADING -->
@@ -12,7 +8,7 @@
         <li><a href="#">Aplikasi</a></li>
         <li class="active">Data Wajib Retribusi</li>
     </ul>
-    @if(count($errors) > 0)
+@if(count($errors) > 0)
     <div class="alert alert-danger">
      Upload Validation Error<br><br>
      <ul>
@@ -30,11 +26,7 @@
    </div>
    @endif
 
-
-<div class="container">
-  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Import</button>
-  <div id="demo" class="collapse">
-  <form method="post" enctype="multipart/form-data" action="/devadmin/wajib_retribusi/importGampong">
+   <form method="post" enctype="multipart/form-data" action="/devadmin/wajib_retribusi/importGampong">
     {{ csrf_field() }}
     <div class="form-group">
      <table class="table">
@@ -49,16 +41,13 @@
       </tr>
       <tr>
        <td width="40%" align="right"></td>
-       <a href="/devadmin/wajib_retribusi/download"><button class="btn btn-primary btn-sm" type="button">
-                                Download Format Import WR<i class="uil uil-download-alt"></i>
-                             </button></a>
+       
        <td width="30%" align="left"></td>
       </tr>
      </table>
     </div>
    </form>
-     </div>
-</div>               
+
 </div>
 
 <!-- END PAGE HEADING -->
@@ -90,17 +79,12 @@
                         <div class="panel panel-warning">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><b>Data Wajib Retribusi (GAMPONG)</b></h3>
-                                <br>
-                                <div class="panel-elements pull-right">
-                                <a href="{{url('/devadmin/wajib_retribusi/cetakWr')}}" target="_blank"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Export</button></a>
-                            </div>
-
-                                <div>
-                                <a href="{{url('/devadmin/tambahwajib_retribusi')}}"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Tambah</button></a>    
+                               <div class="panel-elements pull-right">
+                                    <a href="{{url('/devadmin/tambahwajib_retribusi')}}"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Tambah</button></a>
+                                
+                                    <a href="{{url('/devadmin/wajib_retribusi/cetakWr')}}" target="_blank"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Export</button></a>
                                 </div>
                             </div>
-        
-                              
                             <div class="panel-body">      
                                 <div class="block-content  ">
                                     <table id="gampong" class="table table-head-custom table-bordered table-striped margin-bottom-10 small"  style="width: 100%;" >
@@ -134,14 +118,8 @@
                         <div class="panel panel-info">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><b>Data Wajib Retribusi (KOMERSIL)</b></h3>
-                                    <br>
-
-                                <div class="panel-elements pull-right">
-                                <a href="{{url('/devadmin/wajib_retribusi/cetakWr2')}}" target="_blank"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Export</button></a>
-                                </div>
-
-                                <div>
-                                <a href="{{url('/devadmin/tambahwajib_retribusi')}}"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Tambah</button></a>    
+                               <div class="panel-elements pull-right">
+                                    <a href="{{url('/devadmin/tambahwajib_retribusi')}}"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Tambah</button></a>
                                 </div>
                             </div>
                             <div class="panel-body">      
@@ -177,13 +155,8 @@
                         <div class="panel panel-info">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><b>Data Wajib Retribusi (BELUM ADA STATUS)</b></h3>
-                                <br>
-                                <div class="panel-elements pull-right">
-                                <a href="{{url('/devadmin/wajib_retribusi/cetakWr3')}}" target="_blank"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Export</button></a>
-                                </div>
-
-                                <div>
-                                <a href="{{url('/devadmin/tambahwajib_retribusi')}}"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Tambah</button></a>    
+                               <div class="panel-elements pull-right">
+                                    <a href="{{url('/devadmin/tambahwajib_retribusi')}}"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Tambah</button></a>
                                 </div>
                             </div>
                             <div class="panel-body">      
@@ -218,80 +191,6 @@
     </div>
       
 </div>
-
-
-
-
-<<<<<<< HEAD
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Import File Excel</h4>
-
-      </div>
-      <div class="modal-body">
-          
-      <div class="card card-primary">
-      
-      <form method="POST"  action="/devadmin/wajib_retribusi/importGampong" enctype="multipart/form-data">      
-      {{csrf_field()}}
-      
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    
-                    <div class="input-group">
-                      <div class="custom-file">
-                      <!-- <input type="hidden" name="_token" value="{{Session::token()}}" /> -->
-                        <input type="file" class="custom-file-input" id="exampleInputFile" name="data-wr" required="required" >
-                        <br>
-                        <br>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <input type="submit" class="btn btn-info" name="submit" value="submit">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- /.card-body -->
-              </form>
-            </div>
-            <!-- /.card -->
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal komersil -->
-<div id="myModal2" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Import File Excel</h4>
-      </div>
-      <div class="modal-body">
-      <div class="card card-primary">
-              !!Form::open(['route' => 'import.gampong', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data'])!!
-
-              {!! Form::file('import.gampong')}
-              <!-- form start -->
-       
-            </div>
-            <!-- /.card -->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-info" value="import">Submit</button>
-      </div>
-    </div>
-=======
->>>>>>> 229ad1e7c3251ba3e455e2bb320c0017bcf7c199
-
-
-
 
 <div class="modal fade" id="modal-backdrop-disable-editpw" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-info modal-lg" role="document">                    
@@ -331,8 +230,7 @@
             
             
         </div>
-    </div>    
-            
+    </div>            
 </div>
 
 <script type="text/javascript">
@@ -878,8 +776,5 @@
         loaddataver();
     });
 
- 
-
 </script>
-
 @endsection
