@@ -48,15 +48,16 @@
                                         <thead>
                                             <tr>
                                                 <th>NO</th>
-                                                <th>KODE</th>
-                                                <th>NIK</th>
+                                                <!--- <th>KODE</th> --->
                                                 <th>NAMA</th>
+												<th>WAKTU DAFTAR</th>
                                                 <th>ALAMAT</th>
                                                 <th>JENIS RETRIBUSI</th>
                                                 <th>TARIF</th>
                                                 <th>VERIFIKASI</th>
-                                                <th>AKSI</th>
-                                                
+												<th>No HP</th>
+												<th>Nama Petugas</th>
+												<th>AKSI</th>												
                                             </tr>
                                         </thead>  
                                     </table>
@@ -85,15 +86,16 @@
                                         <thead>
                                             <tr>
                                                 <th>NO</th>
-                                                <th>KODE</th>
-                                                <th>NIK</th>
+                                                <!--- <th>KODE</th> --->
                                                 <th>NAMA</th>
+												<th>WAKTU DAFTAR</th>
                                                 <th>ALAMAT</th>
                                                 <th>JENIS RETRIBUSI</th>
                                                 <th>TARIF</th>
                                                 <th>VERIFIKASI</th>
-                                                <th>AKSI</th>
-                                                
+												<th>No HP</th>
+												<th>Nama Petugas</th>
+												<th>AKSI</th>
                                             </tr>
                                         </thead>  
                                     </table>
@@ -122,14 +124,14 @@
                                         <thead>
                                             <tr>
                                                 <th>NO</th>
-                                                <th>KODE</th>
-                                                <th>NIK</th>
+                                                <!--- <th>KODE</th> --->
                                                 <th>NAMA</th>
+												<th>WAKTU DAFTAR</th>
                                                 <th>ALAMAT</th>
-                                                <th>JENIS RETRIBUSI</th>
-                                                <th>TARIF</th>
                                                 <th>VERIFIKASI</th>
-                                                <th>AKSI</th>
+												<th>No HP</th>
+												<th>Nama Petugas</th>
+												<th>AKSI</th>
                                                 
                                             </tr>
                                         </thead>  
@@ -241,13 +243,16 @@
                         return meta.row + meta.settings._iDisplayStart + 1;
                     }
                 },
-                { data:  'code'  },
-                { data:  'nik'  },
+                //{ data:  'code'  },
+                //{ data:  'nik'  },
                 { data:  'nama'  },
+				{ data:  'created_at'  },
                 { data:  'alamat'  },
                 { data:  'jenis'  },
                 { data:  'tarif'  },
                 { data:  'is_active'  },
+				{ data:  'hp'  },
+				{ data:  'namapetugas'  },
                   { data: null, render: function ( data, type, row ) {
 
                     var editUrl = "{{ url('/devadmin/detail/wajib_retribusi', 'url') }}";
@@ -316,13 +321,16 @@
                         return meta.row + meta.settings._iDisplayStart + 1;
                     }
                 },
-                { data:  'code'  },
-                { data:  'nik'  },
+                //{ data:  'code'  },
+                //{ data:  'nik'  },
                 { data:  'nama'  },
+				{ data:  'created_at'  },
                 { data:  'alamat'  },
                 { data:  'jenis'  },
                 { data:  'tarif'  },
                 { data:  'is_active'  },
+				{ data:  'hp'  },
+				{ data:  'namapetugas'  },
                   { data: null, render: function ( data, type, row ) {
 
                     var editUrl = "{{ url('/devadmin/detail/wajib_retribusi', 'url') }}";
@@ -391,13 +399,14 @@
                         return meta.row + meta.settings._iDisplayStart + 1;
                     }
                 },
-                { data:  'code'  },
-                { data:  'nik'  },
+                //{ data:  'code'  },
+                //{ data:  'nik'  },
                 { data:  'nama'  },
+				{ data:  'created_at'  },
                 { data:  'alamat'  },
-                { data:  'jenis'  },
-                { data:  'tarif'  },
                 { data:  'is_active'  },
+				{ data:  'hp'  },
+				{ data:  'namapetugas'  },
                   { data: null, render: function ( data, type, row ) {
 
                     var editUrl = "{{ url('/devadmin/detail/wajib_retribusi', 'url') }}";

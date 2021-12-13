@@ -237,10 +237,15 @@ Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
 
     //===========================================import======================================
     Route::post('/devadmin/wajib_retribusi/importGampong','Admin\WajibRetribusiController@importGampong')->name('import.gampong');
-    Route::post('/devadmin/wajib_retribusi/import','importController@import')->name('import');
+    
+    //Route::get('/devadmin/wajib_retribusi/download','Admin\WajibRetribusiController@downloadFile');
 
-
-
+    Route::get('/devadmin/wajib_retribusi/download',
+     function(){
+         $file =public_path()."\uploads\import\Format.xlsx";
+         $headers =array('Content-Type' => 'application/xlsx',); 
+        return Response::download($file,"Format.xlsx",$headers);
+     });
 
 
     //DATA TAGIHAN WAJIB RETRIBUSI-----------------------------------------------------

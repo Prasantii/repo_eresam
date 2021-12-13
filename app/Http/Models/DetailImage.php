@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class DetailImage extends Model
 {
     protected $table = 'detail_image_wr';
+    protected $fillable = ['id_wr'];
 }

@@ -1,9 +1,5 @@
-<!-- <meta name="csrf-token" content="{{ csrf_token() }}"> -->
-
 @extends('admin.home')
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 @section('content')
 
 <!-- START PAGE HEADING -->
@@ -12,7 +8,7 @@
         <li><a href="#">Aplikasi</a></li>
         <li class="active">Data Wajib Retribusi</li>
     </ul>
-    @if(count($errors) > 0)
+@if(count($errors) > 0)
     <div class="alert alert-danger">
      Upload Validation Error<br><br>
      <ul>
@@ -30,11 +26,7 @@
    </div>
    @endif
 
-
-<div class="container">
-  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Import</button>
-  <div id="demo" class="collapse">
-  <form method="post" enctype="multipart/form-data" action="/devadmin/wajib_retribusi/importGampong">
+   <form method="post" enctype="multipart/form-data" action="/devadmin/wajib_retribusi/importGampong">
     {{ csrf_field() }}
     <div class="form-group">
      <table class="table">
@@ -49,16 +41,13 @@
       </tr>
       <tr>
        <td width="40%" align="right"></td>
-       <a href="/devadmin/wajib_retribusi/download"><button class="btn btn-primary btn-sm" type="button">
-                                Download Format Import WR<i class="uil uil-download-alt"></i>
-                             </button></a>
+       
        <td width="30%" align="left"></td>
       </tr>
      </table>
     </div>
    </form>
-     </div>
-</div>               
+
 </div>
 
 <!-- END PAGE HEADING -->
@@ -90,17 +79,12 @@
                         <div class="panel panel-warning">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><b>Data Wajib Retribusi (GAMPONG)</b></h3>
-                                <br>
-                                <div class="panel-elements pull-right">
-                                <a href="{{url('/devadmin/wajib_retribusi/cetakWr')}}" target="_blank"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Export</button></a>
-                            </div>
-
-                                <div>
-                                <a href="{{url('/devadmin/tambahwajib_retribusi')}}"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Tambah</button></a>    
+                               <div class="panel-elements pull-right">
+                                    <a href="{{url('/devadmin/tambahwajib_retribusi')}}"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Tambah</button></a>
+                                
+                                    <a href="{{url('/devadmin/wajib_retribusi/cetakWr')}}" target="_blank"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Export</button></a>
                                 </div>
                             </div>
-        
-                              
                             <div class="panel-body">      
                                 <div class="block-content  ">
                                     <table id="gampong" class="table table-head-custom table-bordered table-striped margin-bottom-10 small"  style="width: 100%;" >
@@ -134,14 +118,8 @@
                         <div class="panel panel-info">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><b>Data Wajib Retribusi (KOMERSIL)</b></h3>
-                                    <br>
-
-                                <div class="panel-elements pull-right">
-                                <a href="{{url('/devadmin/wajib_retribusi/cetakWr2')}}" target="_blank"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Export</button></a>
-                                </div>
-
-                                <div>
-                                <a href="{{url('/devadmin/tambahwajib_retribusi')}}"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Tambah</button></a>    
+                               <div class="panel-elements pull-right">
+                                    <a href="{{url('/devadmin/tambahwajib_retribusi')}}"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Tambah</button></a>
                                 </div>
                             </div>
                             <div class="panel-body">      
@@ -177,13 +155,8 @@
                         <div class="panel panel-info">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><b>Data Wajib Retribusi (BELUM ADA STATUS)</b></h3>
-                                <br>
-                                <div class="panel-elements pull-right">
-                                <a href="{{url('/devadmin/wajib_retribusi/cetakWr3')}}" target="_blank"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Export</button></a>
-                                </div>
-
-                                <div>
-                                <a href="{{url('/devadmin/tambahwajib_retribusi')}}"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Tambah</button></a>    
+                               <div class="panel-elements pull-right">
+                                    <a href="{{url('/devadmin/tambahwajib_retribusi')}}"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Tambah</button></a>
                                 </div>
                             </div>
                             <div class="panel-body">      
@@ -218,13 +191,6 @@
     </div>
       
 </div>
-
-
-
-
-
-
-
 
 <div class="modal fade" id="modal-backdrop-disable-editpw" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-info modal-lg" role="document">                    
@@ -264,8 +230,7 @@
             
             
         </div>
-    </div>    
-            
+    </div>            
 </div>
 
 <script type="text/javascript">
@@ -811,8 +776,5 @@
         loaddataver();
     });
 
- 
-
 </script>
-
 @endsection

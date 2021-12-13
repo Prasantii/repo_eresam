@@ -1,32 +1,27 @@
 <?php
-
+//==================== GAK DIPAKE=================================
 namespace App\Imports;
 
+
+
 use App\Http\Models\wrGampong;
+use App\Http\Models\DetailImage;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Imports\HeadingRowFormatter;
 //use Maatwebsite\Excel\Imports\HeadingRowFormatter;
+use Illuminate\Support\Facades\Hash;
 //use App\Imports\Hash;
 
 class wrGampong_import implements ToModel, WithHeadingRow
 {
-    // public function __construct(){
-    //     $this->wrGampong = wrGampong::select('nik','nama','hp','alamat','username','email','password','districts.name','villages.name')
-    //     ->leftJoin('districts','wajib_retribusi.district_id','=','districts.id')
-    //     ->leftJoin('villages','wajib_retribusi.villages_id','=','villages.id')
-    //     ->get();
-        
-    // }
-
     /**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
     public function model(array $row)
-    {
-        return new wrGampong([
+    {   $wr_gampong = new wrGampong([
             
             //dd($row)
             //========== atribut DB         => atribut excel huruf kecil ===========
@@ -41,12 +36,18 @@ class wrGampong_import implements ToModel, WithHeadingRow
                         'alamat'           	=>$row['alamat'],
                         'username'	        =>$row['username'],
                         'email'		        =>$row['email'],
-                        'password'		    =>$row['password']               
+                        'password'		    =>hash::make($row['password']),
     ]);
-    }
-    
-    public function headingRow(): int
+
+      new DetailImage([
+        'id_wr' =>$wr_gampong->id
+        //'id_wr'     =>$row['id']
+    ]);
+    return $wr_gampong;
+}
+
+public function headingRow(): int
     {
-        return 2;
+        return 1;
     }
 }

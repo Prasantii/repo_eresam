@@ -1338,16 +1338,23 @@ class WajibRetribusiController extends Controller
          ]);
 
         $path = $request->file('select_file')->getRealPath();
-     //$rows = Excel::import(new wrKomersil_import,$path);
+    $rows = Excel::import(new wrKomersil_import,$path);
      
         //$collection = (new wrKomersil_import)->toCollection('tes.xlsx');
    
        
 
         //===========berhasil import====================
-         $row = Excel::import(new wrGampong_import,$path);         
+       // $row = Excel::import(new wrGampong_import,$path);         
          return back()->with('success', 'Data Berhasil di Import!');
         
+    }
+
+    public function downloadFile(Request $request){
+        $file = Storage::disk('public/uploads/import')->get($request);
+  
+        return (new Response($file, 200))
+              ->header('Content-Type', 'application/xlsx');
     }
 
     //========================= TEST DULU ============================
