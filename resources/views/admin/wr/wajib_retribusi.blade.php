@@ -54,7 +54,7 @@
                                 <a href="{{url('/devadmin/tambahwajib_retribusi')}}"><button class="btn btn-success btn-shadowed" type="button"><span class="fa fa-edit"></span> Tambah</button></a>    
                                 </div>
                             </div>
-
+        
                               
                             <div class="panel-body">      
                                 <div class="block-content  ">
@@ -197,8 +197,7 @@
           
       <div class="card card-primary">
       
-      <form method="POST"  action="/devadmin/wajib_retribusi/importGampong" enctype="multipart/form-data">
-      
+      <form method="POST"  action="/devadmin/wajib_retribusi/importGampong" enctype="multipart/form-data">      
       {{csrf_field()}}
       
                 <div class="card-body">

@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\wrGampong;
+use App\Http\Models\wrGampong;
             use Maatwebsite\Excel\Imports\HeadingRowFormatter;
             use Maatwebsite\Excel\Concerns\ToModel;
             use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -19,23 +19,25 @@ class wrGampong_import implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         return new wrGampong([
-        
-            $row['No'],
-            'code'  => $row['Kode'],
-            'nik' => $row['Nik'],
-            'nama'  => $row['Nama'],
-            'alamat' => $row['Alamat'],
-            'jenis_id' => $row['Jenis Retribusi'],
-            'is_active' => $row['Verifikasi']
+            
+            //dd($row)
+            //========== atribut DB         => atribut excel huruf kecil ===========
+                        //'code'              =>$row['kode'],
+                  
+                'nik'               =>$row['nik'],
+                'nama'             	=>$row['nama'],
+                'hp'               	=>$row['no_hp'],
+               // 'kabupatenDB'   	=>$row['kabupatenDB'],
+                //'kecamatan.nama'	=>$row['kecamatan'],
+                //'villages.name'	    =>$row['gampong']
+                'alamat'           	=>$row['alamat'],
+                'username'	        =>$row['username'],
+                'email'		        =>$row['email'],
+                'password'		    =>$row['password']               
     ]);
-
-                        // 'KODE'              =>$row['code'],
-                        // 'NIK'               =>$row['nik'],
-                        // 'NAMA'              =>$row['nama'],
-                        // 'ALAMAT'            =>$row['alamat'],
-                        // 'JENIS RETRIBUSI'   =>$row['jenis_retribusi'],
-                        // 'TARIF'             =>$row['tarif_gampong'],
-                        // 'VERIFIKASI'        =>$row['is_active']
-    
+    }
+    public function headingRow(): int
+    {
+        return 2;
     }
 }

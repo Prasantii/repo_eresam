@@ -2,37 +2,34 @@
 
 namespace App\Imports;
 
-use App\wrGampong;
+use App\Http\Models\wrGampong;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 //use maatwebsite\Excel\Concerns\WithChunkReading;
-use Illuminate\Contracts\Queue\ShouldQueue;
+//use Illuminate\Contracts\Queue\ShouldQueue;
+//use Maatwebsite\Excel\Concerns\WithBatchInserts;
+use Maatwebsite\Excel\Concerns\Importable;
 
-
-class wrGampongimport implements ToModel,ShouldQueue ,WithHeadingRow    
+class wrGampongimport implements ToModel
 {
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
+   
+
+    use Importable;
     public function model(array $row)
     {
-        dd($row);
         return new wrGampong([
             //             $row[1],
-            // 'code' => $row[2],
+             //'Kode' => $row[1]
             // 'nik'   => $row[3],
             // 'nama'   => $row[4],
             // 'alamat'    => $row[5],
             // 'jenis_id' =>$row[6],
             // 'is_active' => $row[7]
+        dd($row)
+
           
         ]);
     }
-
-    public function chunkSize(): int
-    {
-        return 1000;
-    }
+        
+  
 }
